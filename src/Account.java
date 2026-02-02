@@ -20,9 +20,10 @@ public abstract class Account {
     }
 
     public abstract boolean withdraw(double amount);
-    public double getBalance() {
-        return balance;
+    public String getBalance() {
+        return NumberFormat.getCurrencyInstance().format(balance);
     }
+
 
     public void printAllTransactions(){
         for (Transaction s:transactions) {

@@ -14,12 +14,12 @@ public class Main {
             System.out.println("6: TRANSACTION HISTORY ");
             System.out.println("7: EXIT ");
             System.out.print("CHOOSE: ")    ;
-            int choice=scanner.nextByte();
+            int choice=scanner.nextInt();
             scanner.nextLine();
             switch (choice){
                 case 1:{
                     System.out.print("Enter Account Number: ");
-                    int accnum=scanner.nextByte();
+                    int accnum=scanner.nextInt();
                     scanner.nextLine();
                     System.out.print("Enter your name: ");
                     String name=scanner.nextLine();
@@ -28,7 +28,7 @@ public class Main {
                 }
                 case 2:{
                     System.out.print("Enter Account Number: ");
-                    int accnum=scanner.nextByte();
+                    int accnum=scanner.nextInt();
                     scanner.nextLine();
                     System.out.print("Enter your name: ");
                     String name=scanner.nextLine();
@@ -43,6 +43,10 @@ public class Main {
                         System.out.print("Enter amount");
                         double amount= scanner.nextDouble();
                         scanner.nextLine();
+                        if(amount <= 0){
+                            System.out.println("Amount must be positive");
+                            break;
+                        }
                         account.deposit(amount);
                         System.out.println("Added successfully");
                     }
@@ -56,9 +60,13 @@ public class Main {
                         System.out.print("Enter amount");
                         double amount= scanner.nextDouble();
                         scanner.nextLine();
-                        account.withdraw(amount);
-                        if(account.withdraw(amount))
-                            System.out.println("Withdrawed successfully");
+                        if(amount <= 0){
+                            System.out.println("Amount must be positive");
+                            break;
+                        }
+                        boolean success = account.withdraw(amount);
+                        if(success)
+                            System.out.println("Withdrawn successfully");
                         else
                             System.out.println("Not enough balance");
                     }
